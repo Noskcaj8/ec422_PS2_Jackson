@@ -109,3 +109,7 @@ unemp |>
 ```
 
 This final plot zooms into the twelve months surrounding the Covid-19 shock to show the speed and severity of the spike more clearly that the full plot above shows. Regions like New York and California spiked the hardest in comparison to Texas and Oregon and the general United States spike.
+
+## Reflection 
+
+This was a very tedious process that I wasn't expecting, but was a good experience for me in terms of learning how to use the software and where I need to go for help. As you know I have had trouble getting R to work properly for me as my iPad didn't do the job, and the computer I am borrowing is extremely old (13 years!). I found some very helpful people at the Data Science tutoring center in the library to help me fix my computer and get it running R so I could actually complete this assignment and I'm very grateful for them. Once I had it working, typing each piece of code was long and a little annoying but it helped me get some type of understanding of what each piece of code was doing and how it worked. I did end up running into another software issue with Quarto but the posit cloud was able to replace that (thanks to Claude for figuring that out). But overall this problem set taught me how useful R is as a software and all the amazing things it can do with data if you know how to work it.

@@ -69,3 +69,40 @@ unemp_top_increases_no_covid <- unemp_no_covid |>
   slice_max(unemployment_rate_change, n = 5, with_ties = TRUE)
 unemp_top_decreases_no_covid <- unemp_no_covid |>
   slice_min(unemployment_rate_change, n = 5, with_ties = TRUE)
+ggplot(unemp, aes(x = date, y = unemployment_rate, color = region)) +
+  geom_line() +
+  labs(
+    title = "Unemployment Rate by Region, 1976-Present",
+    x = "Date",
+    y = "Unemployment Rate (%)",
+    color = "Region"
+  ) +
+  theme_minimal()
+ggplot(unemp, aes(x = date, y = unemployment_rate)) +
+  geom_line() +
+  facet_wrap(~ region) +
+  labs(
+    title = "Unemployment Rate by Region, 1976-Present",
+    x = "Date",
+    y = "Unemployment Rate (%)"
+  ) +
+  theme_minimal()
+ggplot(unemp_summary, aes(x = fct_reorder(region, mean_rate), y = mean_rate)) +
+  geom_col() +
+  labs(
+    title = "Average Unemployment Rate by Region",
+    x = "Region",
+    y = "Mean Unemployment Rate (%)"
+  ) +
+  theme_minimal()
+unemp |>
+  filter(date >= as.Date("2019-06-01") & date <= as.Date("2021-06-01")) |>
+  ggplot(aes(x = date, y = unemployment_rate, color = region)) +
+  geom_line(linewidth = 1) +
+  labs(
+    title = "Unemployment Rate Around the Covid-19 Shock, 2019-2021",
+    x = "Date",
+    y = "Unemployment Rate (%)",
+    color = "Region"
+  ) +
+  theme_minimal()

@@ -1,0 +1,54 @@
+---
+title: "Problem Set 2 Write Up"
+author: "Jackson Dixon"
+date: today
+format: 
+  html:
+    toc: true
+    embed-resources: true
+    theme: none
+---
+
+## 
+
+**GitHub repo:** <https://github.com/Noskcaj8/ec422_PS2_Jackson.git>
+
+## Data
+
+This data comes from the Federal Reserve Economic Data (FRED) database, accessed through the 'tidyquant' package. It includes monthly employment rates for the United States, California, Oregon, Texas, and New York, from 1976 through 2026.
+
+```{r}
+#| message: false
+library(tidyquant)
+library(knitr)
+library(tidyverse)
+
+unemp_raw <- read_rds("data/unemp_raw.rds")
+head(unemp_raw)
+#| message: false
+source("ps2_script_Jackson.R")
+```
+
+## Wrangling
+
+The following tables summarize key patterns in the unemployment data.
+
+```{r}
+#| echo: false
+kable(unemp_summary, caption = "Mean, minimum, and maximum unemployment rate by region, full sample")
+```
+
+```{r}
+#| echo: false
+kable(unemp_recent_summary, caption = "Mean, minimum, and maximum unemployment rate by region, 2015-present")
+```
+
+```{r}
+#| echo: false
+kable(unemp_top_increases_no_covid, caption = "Five largest month-over-month increases in unemployment rate, excluding 2020")
+```
+
+```{r}
+#| echo: false
+kable(unemp_top_decreases_no_covid, caption = "Five largest month-over-month decreases in unemployment rate, excluding 2020")
+```

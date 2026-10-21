@@ -52,3 +52,60 @@ kable(unemp_top_increases_no_covid, caption = "Five largest month-over-month inc
 #| echo: false
 kable(unemp_top_decreases_no_covid, caption = "Five largest month-over-month decreases in unemployment rate, excluding 2020")
 ```
+
+## Visualization
+
+```{r}
+#| fig-cap: "Unemployment rate by region over time"
+ggplot(unemp, aes(x = date, y = unemployment_rate, color = region)) +
+  geom_line() +
+  labs(
+    title = "Unemployment Rate by Region, 1976-2026",
+    x = "Date",
+    y = "Unemployment Rate (%)",
+    color = "Region"
+  ) +
+  theme_minimal()
+```
+
+```{r}
+#| fig-cap: "Unemployment rate by region, individual panels"
+ggplot(unemp, aes(x = date, y = unemployment_rate)) + 
+  geom_line() +
+  facet_wrap(~ region) +
+  labs(
+    title = "Unemployment Rate by Region, 1976-2026",
+    x = "Date",
+    y = "Unemployment Rate (%)"
+  ) +
+  theme_minimal()
+```
+
+```{r}
+#| fig-cap: "Average unemployment rate by region, full sample"
+ggplot(unemp_summary, aes(x = fct_reorder(region, mean_rate), y = mean_rate)) +
+  geom_col() +
+  labs(
+    title = "Average Unemployment Rate by Region",
+    x = "Region",
+    y = "Mean Unemployment Rate (%)"
+  ) +
+  theme_minimal()
+```
+
+```{r}
+#| fig-cap: "Unemployment rate around the Covid-19 shock"
+unemp |>
+  filter(date >= as.Date("2019-06-01") & date <= as.Date("2021-06-01")) |>
+  ggplot(aes(x = date, y = unemployment_rate, color = region)) +
+  geom_line(linewidth = 1) +
+  labs(
+    title = "Unemployment Rate Around the Covid-19 Shock, 2019-2021",
+    x = "Date",
+    y = "Unemployment Rate (%)",
+    color = "Region"
+  ) +
+  theme_minimal()
+```
+
+This final plot zooms into the twelve months surrounding the Covid-19 shock to show the speed and severity of the spike more clearly that the full plot above shows. Regions like New York and California spiked the hardest in comparison to Texas and Oregon and the general United States spike.
